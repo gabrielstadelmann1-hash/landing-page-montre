@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge Élysée - L'Art du Temps Mobile</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0A0A0A;
+            --panel-bg: #141414;
+            --text-light: #F5F5F7;
+            --text-muted: #8E8E93;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* App Mockup Wrapper */
+        .phone-wrapper {
+            max-width: 430px; /* iPhone 15/16 Pro Max width approx */
+            min-height: 100vh;
+            margin: 0 auto;
+            background-color: var(--dark-bg);
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            border-left: 1px solid #222;
+            border-right: 1px solid #222;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 20px;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 20px 60px 20px;
+        }
+
+        .hero .subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .watch-display {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .watch-circle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(10,10,10,0) 70%);
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        .watch-svg {
+            width: 240px;
+            height: 240px;
+            z-index: 2;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.7));
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.95); opacity: 0.6; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        .cta-group {
+            padding: 0 10px;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #E5C060 0%, #B88E2F 100%);
+            color: #000;
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(184, 142, 47, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* Specs / Details Section */
+        .details-section {
+            padding: 60px 20px;
+            background-color: var(--panel-bg);
+            border-top: 1px solid #1f1f1f;
+        }
+
+        .section-title {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .detail-card {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 25px;
+        }
+
+        .detail-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .detail-num {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .detail-card h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .detail-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Bottom Gallery Experience */
+        .craftsmanship {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .craftsmanship p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-wrapper">
+        
+        <header>
+            <div class="logo">ÉLYSÉE</div>
+            <button class="menu-btn">≡</button>
+        </header>
+
+        <section class="hero">
+            <span class="subtitle">L'Édition Absolue</span>
+            <h1>L'essence du temps, capturée.</h1>
+            
+            <div class="watch-display">
+                <div class="watch-circle-bg"></div>
+                <!-- Pure CSS/SVG Watch Visual -->
+                <svg class="watch-svg" viewBox="0 0 200 200">
+                    <!-- Rose Gold Case Exterior -->
+                    <circle cx="100" cy="100" r="82" fill="none" stroke="#D4AF37" stroke-width="4"/>
+                    <!-- Dark Dial Finish -->
+                    <circle cx="100" cy="100" r="80" fill="#111111"/>
+                    <circle cx="100" cy="100" r="76" fill="none" stroke="#1A1A1A" stroke-width="1"/>
+                    <!-- Inner Gold Ring -->
+                    <circle cx="100" cy="100" r="55" fill="none" stroke="#D4AF37" stroke-dasharray="1, 8" stroke-width="1.5"/>
+                    
+                    <!-- Hour Markers (Minimalist) -->
+                    <line x1="100" y1="26" x2="100" y2="34" stroke="#D4AF37" stroke-width="2"/>
+                    <line x1="174" y1="100" x2="166" y2="100" stroke="#D4AF37" stroke-width="2"/>
+                    <line x1="100" y1="174" x2="100" y2="166" stroke="#D4AF37" stroke-width="2"/>
+                    <line x1="26" y1="100" x2="34" y2="100" stroke="#D4AF37" stroke-width="2"/>
+                    
+                    <!-- Watch Hands -->
+                    <!-- Hour Hand -->
+                    <line x1="100" y1="100" x2="100" y2="65" stroke="#E5C060" stroke-width="3.5" stroke-linecap="round" transform="rotate(42 100 100)"/>
+                    <!-- Minute Hand -->
+                    <line x1="100" y1="100" x2="140" y2="100" stroke="#F5F5F7" stroke-width="2" stroke-linecap="round" transform="rotate(-15 100 100)"/>
+                    <!-- Center Pivot -->
+                    <circle cx="100" cy="100" r="4" fill="#D4AF37"/>
+                    <circle cx="100" cy="100" r="1.5" fill="#111"/>
+                </svg>
+            </div>
+
+            <div class="cta-group">
+                <a href="#reserve" class="btn-primary">RÉSERVER L'EXEMPLAIRE</a>
+            </div>
+        </section>
+
+        <section class="details-section">
+            <h2 class="section-title">Le Savoir-Faire</h2>
+            
+            <div class="detail-card">
+                <span class="detail-num">01 / DESIGN</span>
+                <h3>Boîtier Or Rose 18k</h3>
+                <p>Une silhouette affinée de 8.2 mm sculptée dans un bloc d'or rose massif, polie à la main par nos maîtres artisans pour un éclat miroir inégalé.</p>
+            </div>
+
+            <div class="detail-card">
+                <span class="detail-num">02 / MOUVEMENT</span>
+                <h3>Calibre Tourbillon</h3>
+                <p>Une complication mécanique squelette automatique cadencée à 28'800 alternances par heure, offrant une réserve de marche de 72 heures.</p>
+            </div>
+
+            <div class="detail-card">
+                <span class="detail-num">03 / FINITION</span>
+                <h3>Cadran Onyx Noir</h3>
+                <p>Un disque de pierre fine d'un noir profond et magnétique, contrasté par des index facettés en applique, protégés par un verre saphir double dôme antireflet.</p>
+            </div>
+        </section>
+
+        <section class="craftsmanship">
+            <p>"Une harmonie parfaite entre tradition séculaire et pureté contemporaine."</p>
+            <div class="cta-group">
+                <a href="#discover" class="btn-primary" style="background: none; border: 1px solid var(--gold); color: var(--gold); box-shadow: none;">EXPLORER LES VARIATIONS</a>
+            </div>
+        </section>
+
+        <footer>
+            © 2026 ÉLYSÉE HAUTE HORLOGERIE. TOUS DROITS RÉSERVÉS.
+        </footer>
+
+    </div>
+
+</body>
+</html>
